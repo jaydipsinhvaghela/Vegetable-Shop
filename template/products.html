@@ -1,0 +1,75 @@
+{% extends 'template.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+     <div class="row">
+          {% for data in response %}
+          <div class="col-3 my-4">
+               <div class="product-box product-box-bg wow fadeInUp"
+                    style="visibility: visible; animation-name: fadeInUp;">
+                    <div class="product-image">
+                         <a href="/project/single-product/{{data.id}}" tabindex="0">
+                              <img src="/media/{{data.image}}"
+                                   style="width: 300px !important; height: 300px !important;"
+                                   class="img-fluid blur-up lazyloaded rounded" alt="">
+                         </a>
+                         <ul class="product-option">
+                              <li data-bs-toggle="tooltip" data-bs-placement="top" title=""
+                                   data-bs-original-title="View">
+                                   <a href="/project/single-product/{{data.id}}">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                             stroke-linecap="round" stroke-linejoin="round" class="feather feather-eye">
+                                             <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                             <circle cx="12" cy="12" r="3"></circle>
+                                        </svg>
+                                   </a>
+                              </li>
+
+                              <li data-bs-toggle="tooltip" data-bs-placement="top" title=""
+                                   data-bs-original-title="cart">
+                                   <a href="/project/add_to_cart/{{data.id}}" tabindex="0">
+                                        <i class="fa-solid fa-cart-shopping"></i>
+                                   </a>
+                              </li>
+
+                              <li data-bs-toggle="tooltip" data-bs-placement="top" title=""
+                                   data-bs-original-title="Wishlist">
+                                   <a href="/project/wishlist/{{data.id}}" class="notifi-wishlist" tabindex="0">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                             stroke-linecap="round" stroke-linejoin="round"
+                                             class="feather feather-heart">
+                                             <path
+                                                  d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                             </path>
+                                        </svg>
+                                   </a>
+                              </li>
+                         </ul>
+                    </div>
+                    <div class="product-detail">
+                         <a href="/project/single-product/{{data.id}}" tabindex="0">
+                              <h6 class="name">
+                                   {{data.name}}
+                              </h6>
+                         </a>
+
+                         <h5 class="sold text-content">
+                              <span class="theme-color price">₹ {{data.price}}</span>
+                         </h5>
+                         <div class="add-to-cart-box bg-white"  >
+                              <a href="/project/single-product/{{data.id}}">
+                              <button class="btn btn-add-cart addcart-button" tabindex="0" >Add
+                                  
+                              </button>
+                              </a>
+                         </div>
+                    </div>
+               </div>
+          </div>
+          {% endfor %}
+     </div>
+</div>
+
+{% endblock %}

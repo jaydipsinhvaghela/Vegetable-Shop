@@ -1,0 +1,44 @@
+{% extends 'admin_template.html' %}
+{% load static %}
+{% block content %}
+
+<div class="card bg-white border-0 rounded-10 mb-4">
+     <div class="card-header">
+          <h2>
+               View Feedback
+          </h2>
+     </div>
+     <div class="card-body p-4">
+          <div class="default-table-area members-list">
+               <div class="table-responsive">
+                    <table class="table align-middle" id="myTable">
+                         <thead>
+                              <tr>
+                                   <th scope="col">Customer Name</th>
+                                   <th scope="col">Title </th>
+                                   <th scope="col">Message</th>
+                              </tr>
+                         </thead>
+                         <tbody>
+                              {% for data in response %}
+                              <tr>
+                                   <td>
+                                        {{data.name}}
+                                   </td>
+                                   <td>
+                                        {{data.title}}
+                                   </td>
+                                   <td>
+                                        {{data.description}}
+                                   </td>
+                              </tr>
+                              {% endfor %}
+                         </tbody>
+                    </table>
+               </div>
+          </div>
+     </div>
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,86 @@
+{% extends 'template.html' %}
+{% load static %}
+{% block content %}
+<section class="wishlist-section section-b-space">
+     <div class="container-fluid-lg">
+          <div class="row g-sm-3 g-2">
+               {% for data in result %}
+               {% for answer in data %}
+               <div class="col-xxl-2 col-lg-3 col-md-4 col-6 product-box-contain">
+                    <div class="product-box-3 h-100">
+                         <div class="product-header">
+                              <div class="product-image">
+                                   <a href="/project/single-product/{{answer.id}}">
+                                        <img src="/media/{{answer.image}}" class="img-fluid blur-up lazyloaded" alt="">
+                                   </a>
+                                   <div class="product-header-top"> 
+                                      
+                                        <a class="remove close_button"  data-product-id="{{answer.id}}" href="remove_from_wishlist/{{answer.id}}" >
+                                             <h5 class="name"></h5>
+                                        </a>
+                                        <a class="remove close_button"  data-product-id="{{answer.id}}" href="remove_from_wishlist/{{answer.id}}" >
+                                             <h5 class="name"></h5>
+                                        <button class="btn wishlist-button close_button" id="remove_btn1"
+                                             data-product-id="{{answer.id}}" data-product-id="{{answer.id}}" href="remove_from_wishlist/{{answer.id}}">
+                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                  stroke-linecap="round" stroke-linejoin="round"
+                                                  class="feather feather-x">
+                                                  <line x1="18" y1="6" x2="6" y2="18"></line>
+                                                  <line x1="6" y1="6" x2="18" y2="18"></line>
+                                             </svg>
+                                        </button>
+                                   </a>
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="product-footer">
+                              <div class="product-detail">
+                                   <a href="/project/single_product/{{answer.id}}">
+                                        <h5 class="name">{{answer.name}} </h5>
+                                   </a>
+          
+                                   <h5 class="price">
+                                        <span class="theme-color"> ₹{{answer.price}}</span>
+                                   </h5>
+
+                                   <div class="add-to-cart-box bg-white mt-2">
+                                        <button class="btn btn-add-cart addcart-button">Add
+                                             <span class="add-icon bg-light-gray">
+                                                  <i class="fa-solid fa-plus"></i>
+                                             </span>
+                                        </button>
+                                       
+                                        <div class="cart_qty qty-box">
+                                             <div class="input-group bg-white">
+                                                  <button type="button" class="qty-left-minus bg-gray" data-type="minus"
+                                                       data-field="">
+                                                       <i class="fa fa-minus" aria-hidden="true"></i>
+                                                  </button>
+                                                  <input class="form-control input-number qty-input" type="text"
+                                                       name="quantity" value="0">
+                                                  <button type="button" class="qty-right-plus bg-gray" data-type="plus"
+                                                       data-field="">
+                                                       <i class="fa fa-plus" aria-hidden="true"></i>
+                                                  </button>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+               {% endfor %}
+               {% endfor %}
+          </div>
+     </div>
+</section>
+<script>
+     
+     $(document).ready(function () {
+         console.log("jQuery working");
+         
+        
+     });
+ </script>
+{% endblock %}

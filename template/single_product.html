@@ -1,0 +1,132 @@
+{% extends 'template.html' %}
+{% load static %}
+{% block content %}
+<section class="product-section mb-5">
+     <div class="container-fluid-lg">
+          {% for data in response %}
+          <div class="row g-4">
+               <div class="col-xl-6">
+                    <div class="product-left-box">
+                         <div class="row g-sm-4 g-2">
+                              <div class="col-12 col-grid-box wow fadeInUp"
+                                   style="visibility: visible; animation-name: fadeInUp;">
+                                   <div class="slider-image">
+                                        <img src="/media/{{data.image}}" id="img-1"
+                                             data-zoom-image="../assets/images/product/category/1.jpg"
+                                             class="img-fluid image_zoom_cls-0 blur-up lazyloaded" alt=""
+                                             style="height: 500px; width: 500px;">
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+
+               <div class="col-xl-6">
+                    <div class="right-box-contain p-sticky wow fadeInUp"
+                         style="visibility: visible; animation-name: fadeInUp;">
+                         <h2 class="name">{{data.name}}</h2>
+                         <div class="price-rating">
+                              <h3 class="theme-color price">₹ {{data.price}} </h3>
+
+                         </div>
+
+                         <div class="procuct-contain">
+                              <p>{{data.description}}.
+                              </p>
+                         </div>
+                         <div class="note-box product-packege">
+                              <div class="cart_qty qty-box product-qty">
+                                   <div class="input-group">
+                                        <button type="button" id="plus_button" class="qty-right-plus" data-type="plus"
+                                             data-field="">
+                                             <i class="fa fa-plus" aria-hidden="true"></i>
+                                        </button>
+                                        <input class="form-control input-number qty-input" type="text" name="quantity"
+                                             id="quantity" value="1" min="1">
+                                        <button type="button" id="minus_button" class="">
+                                             <i class="fa fa-minus" aria-hidden="true"></i>
+                                        </button>
+                                   </div>
+                              </div>
+
+                              <a data-product-id="{{data.id}}" id="addToCart" href="/project/add_to_cart/{{data.id}}"
+                                   class="btn btn-md bg-dark cart-button text-white w-100">Add To Cart</a>
+                         </div>
+
+                         <div class="buy-box">
+                              <a href="/project/wishlist/{{data.id}}">
+                                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round" class="feather feather-heart">
+                                        <path
+                                             d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                        </path>
+                                   </svg>
+                                   <span>Add To Wishlist</span>
+                              </a>
+                         </div>
+                         <div class="paymnet-option">
+                              <div class="product-title">
+                                   <h4>Guaranteed Safe Checkout</h4>
+                              </div>
+                              <ul>
+                                   <li>
+                                        <a href="javascript:void(0)">
+                                             <img src="https://themes.pixelstrap.com/fastkart/assets/images/product/payment/1.svg"
+                                                  class="blur-up lazyloaded" alt="">
+                                        </a>
+                                   </li>
+                                   <li>
+                                        <a href="javascript:void(0)">
+                                             <img src="https://themes.pixelstrap.com/fastkart/assets/images/product/payment/2.svg"
+                                                  class="blur-up lazyloaded" alt="">
+                                        </a>
+                                   </li>
+                                   <li>
+                                        <a href="javascript:void(0)">
+                                             <img src="https://themes.pixelstrap.com/fastkart/assets/images/product/payment/3.svg"
+                                                  class="blur-up lazyloaded" alt="">
+                                        </a>
+                                   </li>
+                                   <li>
+                                        <a href="javascript:void(0)">
+                                             <img src="https://themes.pixelstrap.com/fastkart/assets/images/product/payment/4.svg"
+                                                  class="blur-up lazyloaded" alt="">
+                                        </a>
+                                   </li>
+                                   <li>
+                                        <a href="javascript:void(0)">
+                                             <img src="https://themes.pixelstrap.com/fastkart/assets/images/product/payment/5.svg"
+                                                  class="blur-up lazyloaded" alt="">
+                                        </a>
+                                   </li>
+                              </ul>
+                         </div>
+                    </div>
+               </div>
+          </div>
+          {% endfor %}
+     </div>
+</section>
+<script>
+     $(document).ready(function () {
+          console.log("Jquery working ");
+
+          $("#plus_button").click(function () {
+               $("#quantity").val(parseInt($("#quantity").val()) + 1);
+          });
+
+          $("#minus_button").click(function () {
+               if ($("#quantity").val() > 1) {
+                    $("#quantity").val(parseInt($("#quantity").val() - 1));
+               }
+          });
+
+          $("#addToCart").click(function () {
+               let product_id = $(this).attr("data-product-id");
+               console.log(product_id);
+               $.get("http://127.0.0.1:8080/project/add_to_cart/" + product_id);
+          });
+     });
+</script>
+{% endblock %}

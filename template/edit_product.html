@@ -1,0 +1,126 @@
+{% extends 'admin_template.html' %} {% load static %}{% block content %}
+<div class="row justify-content-center">
+     <div class="col-lg-12">
+          <div class="card bg-white border-0 rounded-10 mb-4">
+               <div class="card-body p-4">
+                    <h4 class="fs-18 mb-4">Edit Product</h4>
+                    <div class="tab-content" id="myTabContent">
+                         <div class="tab-pane fade show active" id="preview-tab-pane" role="tabpanel"
+                              aria-labelledby="preview-tab" tabindex="0">
+                              <form action="/seller/edit_product/{{id}}" method="post" enctype="multipart/form-data">
+                                   {% csrf_token %}
+                                   <div class="row">
+                                        <div class="col-lg-6">
+                                             <div class="form-group mb-4">
+                                                  <label class="label">Product Name</label>
+                                                  <div class="form-group position-relative">
+                                                       <input type="text" class="form-control text-dark ps-5 h-58"
+                                                            placeholder="Enter Product Name " name="name" id="name" />
+                                                       <i
+                                                            class="fa-brands fa-product-hunt position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                             <div class="form-group mb-4">
+                                                  <label class="label">Price</label>
+                                                  <div class="form-group position-relative">
+                                                       <input type="number" class="form-control text-dark ps-5 h-58"
+                                                            placeholder="Enter Price" name="price" id="price" />
+                                                       <i
+                                                            class="fa-solid fa-rupee-sign position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                             <div class="form-group">
+                                                  <label class="label">Select Product Image</label>
+                                                  <div
+                                                       class="form-control h-100 text-center position-relative p-4 p-lg-5">
+                                                       <div class="product-upload">
+                                                            <label for="file-upload" class="file-upload mb-0">
+                                                                 <i
+                                                                      class="ri-upload-cloud-2-line fs-2 text-gray-light"></i>
+                                                                 <span class="d-block fw-semibold text-body">Drop files
+                                                                      here or click to upload.</span>
+                                                            </label>
+                                                            <input id="file-upload" type="file"  name="image">
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                             <img src="https://picsum.photos/400/200" id="image" alt="">
+                                        </div>
+                                        <div class="col-lg-6">
+                                             <div class="form-group mb-4 mt-3">
+                                                  <label class="label">Enter Stock</label>
+                                                  <div class="form-group position-relative">
+                                                       <input type="number" class="form-control text-dark ps-5 h-58"
+                                                            placeholder="Enter Stock" name="stock" id="stock" />
+                                                       <i
+                                                            class="fa-solid fa-boxes-stacked position-absolute top-50 start-0 translate-middle-y fs-20 text-gray-light ps-20"></i>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                             <div class="form-group mb-4 mt-3">
+                                                  <label class="label">Select Category </label>
+                                                  <div class="form-group position-relative">
+                                                       <select class="form-select form-control h-58"
+                                                            aria-label="Default select example" name="category">
+                                                            <option selected value="1" class="text-dark">Value 1
+                                                            </option>
+                                                            <option value="2" class="text-dark">Value 2</option>
+                                                            <option value="3" class="text-dark">Value 3</option>
+                                                            <option value="4" class="text-dark">Value 4</option>
+                                                       </select>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                        <div class="col-lg-12">
+                                             <div class="form-group mb-0">
+                                                  <label class="label">Description :</label>
+                                                  <div class="form-group position-relative">
+                                                       <textarea class="form-control ps-5 text-dark"
+                                                            placeholder="Some demo text ... " cols="30" rows="5"
+                                                            id="desc" name="description"></textarea>
+                                                       <i
+                                                            class="ri-information-line position-absolute top-0 start-0 fs-20 text-gray-light ps-20 pt-2"></i>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                        <div class="col-lg-12 text-end mt-3">
+                                             <button type="submit"
+                                                  class="btn btn-primary bg-primary bg-opacity-10 text-primary border-0 fw-semibold py-2 px-4">Edit
+                                                  Product</button>
+                                             <button type="reset"
+                                                  class="btn btn-danger bg-danger bg-opacity-10 text-danger border-0 fw-semibold py-2 px-4">Clear
+                                                  All</button>
+                                        </div>
+                                   </div>
+                              </form>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>
+
+<script>
+     $(document).ready(function () {
+          console.log("Jquery Working ");
+          let product_id = "{{productid}}"
+          console.log(product_id);
+          let data = JSON.parse("{{ response | escapejs }}");
+          console.log(data)
+          $("#name").val(data[0]['name']);
+          $("#price").val(data[0]['price']);
+          $("#stock").val(data[0]['stock']);
+          $("#category").val(data[0]['categoryid']);
+          $("#desc").val(data[0]['description']);
+          $("#image").attr('src', `/media/${data[0]['image']}`);
+          $("#file-upload").val(`/media/${data[0]['image']}`);
+     });
+</script>
+{% endblock %}

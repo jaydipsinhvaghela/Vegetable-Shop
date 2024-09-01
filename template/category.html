@@ -1,0 +1,34 @@
+{% extends 'template.html' %}
+{% load static %}
+
+{% block content %}
+<section class="category-section-3">
+     <div class="container-fluid-lg">
+          <div class="title">
+               <h2>Shop By Categories</h2>
+          </div>
+          <div class="row">
+               {% for data in response %}
+               <div class="col-4 my-4">
+                    <div class="category-box-list text-center">
+                         <a href="products/{{data.id}}" class="category-name" tabindex="0">
+                              <h4>{{ data.name }}</h4>
+                         </a>
+                         <div class="category-box-view">
+                              <a href="products/{{data.id}}" tabindex="0">
+                                   <img src="/media/{{data.image}}" class=" w-100 img-fluid blur-up lazyloaded"
+                                        alt="" style="height: 200px !important; ">
+                              </a>
+                              <a href="products/{{data.id}}" class="btn shop-button" tabindex="0">
+                                   <span>Shop Now</span>
+                                   <i class="fas fa-angle-right"></i>
+                              </a>
+                         </div>
+                    </div>
+               </div>
+               {% endfor %}
+
+          </div>
+     </div>
+</section>
+{% endblock %}

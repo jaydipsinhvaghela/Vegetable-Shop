@@ -1,0 +1,192 @@
+{% extends 'template.html' %}
+{% load static %}
+{% block content %}
+<section class="cart-section section-b-space">
+     <div class="container-fluid-lg">
+          <div class="row g-sm-5 g-3">
+               <div class="col-xxl-9">
+                    <div class="cart-table">
+                         <div class="table-responsive-xl">
+                              <table class="table">
+                                   <tbody>
+                                        {% for product in products %}
+                                        
+                                        <tr class="product-box-contain">
+                                            <td class="product-detail">
+                                                <div class="product border-0">
+                                                    <a href="{{ product.single_product }}" class="product-image">
+                                                        <img src="/media/{{ product.image}}" class="img-fluid blur-up lazyloaded" alt="{{product.name}}">
+                                                    </a>
+                                                    <div class="product-detail">
+                                                        <ul>
+                                                            <li class="name">
+                                                                <a href="">{{ product.name }}</a>
+                                                            </li>
+                                                            <li class="text-content"><span class="text-title">Sold By:</span> {{product.name}}</li>
+                                                            <li>
+                                                                <h5 class="text-content d-inline-block">Price:</h5>
+                                                                <span data-product-price="{{ product.id }}" id="price{{ product.id }}"> {{ product.price }}</span>
+                                                            </li>
+                                                            <li class="quantity-price-box">
+                                                                <div class="cart_qty">
+                                                                    <div class="input-group">
+                                                                        <button type="button" class="btn_minus" data-type="minus" data-field="" data-product-id="{{ product.id }}">
+                                                                            <i class="fa fa-minus ms-0" aria-hidden="true"></i>
+                                                                        </button>
+                                                                        <input class="form-control  qty-input" type="text" name="quantity" value="1" id="quantity{{ product.id }}">
+                                                                        <button type="button" class="btn_plus" data-product-id="{{ product.id }}" data-type="plus" data-field="">
+                                                                            <i class="fa fa-plus ms-0" aria-hidden="true"></i>
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="price">
+                                                <h4 class="table-title text-content">Price</h4>
+                                                <h5> {{ product.price }}</h5>
+                                            </td>
+                                            <td class="quantity">     
+                                             <h4 class="table-title text-content">Qty</h4>
+                                             <div class="quantity-price">
+                                                 <div class="cart_qty">
+                                                     <div class="input-group">
+                                                         <button type="button" class="btn_minus"  data-type="minus" data-product-id="{{ product.id }}">
+                                                             <i class="fa fa-minus ms-0" aria-hidden="true"></i>
+                                                         </button>
+                                                         <input class="form-control quantity-input" type="text" name="quantity{{ product.id }}" value="{{product.quantity}}" min='1' id="quantity{{ product.id }}" readonly>
+
+                                                   
+                                                         <button type="button" class="btn_plus" data-product-id="{{ product.id }}" data-type="plus">
+                                                             <i class="fa fa-plus ms-0" aria-hidden="true"></i>
+                                                         </button>
+                                                     </div>
+                                                 </div>
+                                             </div>
+                                         </td>
+                                         <td class="subtotal">
+                                             <h4 class="table-title text-content ggg">Total</h4>
+                                             <h5><span id="total{{ product.id }}">{{ product.price }}</span></h5>
+                                         </td>
+                                         
+                                         
+                                            <td class="save-remove">
+                                               
+                                                <h4 class="table-title text-content">Action</h4>
+    
+                                                <a class="remove close_button" data-product-id="{{ product.id }}" href="removeFromCartList/{{product.id}}" >
+                                                    Remove
+                                               </a>
+                                            </td>
+                                        </tr>
+                                        {% endfor %}
+                                    </tbody>
+                                </table>
+                            
+                         </div>
+                    </div>
+               </div>
+
+               <div class="col-xxl-3">
+                    <div class="summery-box p-sticky">
+                         <div class="summery-header">
+                              <h3>Cart Total</h3>
+                         </div>
+                         <ul class="summery-total">
+                              <li class="list-total border-top-0">
+                                   <h4>Total (USD)</h4>
+                                   <h4 class="price theme-color"  id="payment-total">₹0.00</h4>
+                              </li>
+                         </ul>
+
+                         <div class="button-group cart-button">
+                              <ul>
+                                   <li>
+                                        <a href="/project/checkout" class="btn btn-animation proceed-btn fw-bold">Process To
+                                             Checkout</a>
+                                   </li>
+
+                                   <li>
+                                        <a href="/project/category" class="btn btn-light shopping-button text-dark">
+                                             <i class="fa-solid fa-arrow-left-long me-4"> </i>Return To Shopping</a>
+                                   </li>
+                              </ul>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+</section>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        // Get all plus buttons
+        const plusButtons = document.querySelectorAll('.btn_plus');
+
+        // Add click event listener to each plus button
+        plusButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                const productId = button.dataset.productId;
+                const quantityInput = document.getElementById('quantity' + productId);
+                const totalElement = document.getElementById('total' + productId);
+                const priceElement = document.getElementById('price' + productId);
+
+                // Increment quantity
+                let quantity = parseInt(quantityInput.value);
+                quantity++;
+                quantityInput.value = quantity;
+
+                // Update total price
+                updateTotal(productId, quantity, priceElement, totalElement);
+
+                // Update total cart amount
+                updateCartTotal();
+            });
+        });
+
+        // Get all minus buttons
+        const minusButtons = document.querySelectorAll('.btn_minus');
+
+        // Add click event listener to each minus button
+        minusButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                const productId = button.dataset.productId;
+                const quantityInput = document.getElementById('quantity' + productId);
+                const totalElement = document.getElementById('total' + productId);
+                const priceElement = document.getElementById('price' + productId);
+
+                // Decrement quantity
+                let quantity = parseInt(quantityInput.value);
+                if (quantity > 1) {
+                    quantity--;
+                    quantityInput.value = quantity;
+
+                    // Update total price
+                    updateTotal(productId, quantity, priceElement, totalElement);
+
+                    // Update total cart amount
+                    updateCartTotal();
+                }
+            });
+        });
+
+        // Function to update total price for a specific product
+        function updateTotal(productId, quantity, priceElement, totalElement) {
+            const price = parseFloat(priceElement.textContent);
+            const totalPrice = price * quantity;
+            totalElement.textContent = totalPrice.toFixed(2);
+        }
+
+        // Function to update total cart amount
+        function updateCartTotal() {
+            const totalElements = document.querySelectorAll('.subtotal span');
+            let cartTotal = 0;
+            totalElements.forEach(function(element) {
+                cartTotal += parseFloat(element.textContent);
+            });
+            document.getElementById('payment-total').textContent = '₹' + cartTotal.toFixed(2);
+        }
+    });
+</script>
+{% endblock %}

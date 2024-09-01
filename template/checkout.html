@@ -1,0 +1,93 @@
+{% extends 'template.html' %}
+{% load static %}
+{% block content %}
+<section class="breadscrumb-section pt-0">
+     <div class="container-fluid-lg">
+          <div class="row">
+               <div class="col-12">
+                    <div class="breadscrumb-contain">
+                         <h2 class="mb-2">Checkout</h2>
+                    </div>
+               </div>
+          </div>
+     </div>
+</section>
+<section class="log-in-section background-image-2 section-b-space">
+     <div class="container-fluid-lg w-100">
+          <div class="row">
+               <div class="col-12 mx-auto">
+                    <div class="log-in-box">
+                         <div class="input-box">
+                              <form class="row g-4" method="post" action="/project/checkout">
+                                   {% csrf_token %}
+                                   <div class="col-12">
+                                        <div class="form-floating theme-form-floating log-in-form">
+                                             <textarea name="address" class="form-control" cols="30"
+                                                  rows="10" required></textarea>
+                                             <label for="address" >Address </label>
+                                        </div>
+                                   </div>
+                                   <div class="col-12">
+                                        <div class="form-floating theme-form-floating log-in-form">
+                                             <textarea name="address" class="form-control" cols="30"
+                                                  rows="10" required></textarea>
+                                             <label for="address">Your delivery preference time </label>
+                                        </div>
+                                   </div>
+                                   <div class="col-12">
+                                        <div class="" >
+                                             <label for="address" class="form-label fw-bold" >Payment mode
+                                             </label>
+                                        </div>
+                                        <input type="radio" value="0" class="" id="cash" name="pay_mode"> <span
+                                             class="me-3">
+                                             <label for="cash">
+                                                  Cash on Delivery
+                                             </label>
+                                        </span>
+                                        <!-- Input field for orderid -->
+                                        <input type="text" name="orderid" class="form-control" id="orderid" value="{{ orderid }}" readonly>
+                                   </div>
+                                   
+                                   <!-- Loop through order_details to display order products -->
+                                   {% for order in order_details %}
+                                   <input type="text" name="orderid" class="form-control" value="{{ order.orderid }}" hidden>
+                                   {% endfor %}
+                                   {% for order in order_details %}
+                                   <input type="text" name="cartid" class="form-control" value="{{ order.cartid }}" hidden>
+                                   {% endfor %}
+                                   {% for order in order_details %}
+                                   <input type="text" name="seller" class="form-control" value="{{ order.seller }}" hidden>
+                                   {% endfor %}
+                                   
+                                   
+                                   <span class="col-12">
+                                        <button class="btn btn-animation w-100 justify-content-center"
+                                             type="submit">Checkout</button>
+                                   </span>
+                              </form>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+</section>
+Total Amount (USD): ${{ total_amount_usd }}
+
+<script>
+// JavaScript to dynamically update order ID based on selected product
+document.addEventListener('DOMContentLoaded', function() {
+    const productSelect = document.querySelector('#product-select');
+    const orderIDInput = document.querySelector('#orderid');
+    const cartidinput = document.querySelector('#cartid');
+    const selleridinput = document.querySelector('#seller');
+
+    productSelect.addEventListener('change', function() {
+        const selectedProductID = productSelect.value;
+        orderIDInput.value = selectedProductID;
+        cartidinput.value = selectedProductID;
+        selleridinput.value = selectedProductID;
+    });
+});
+</script>
+{% endblock %}

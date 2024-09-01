@@ -1,0 +1,240 @@
+{% extends 'template.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+     <div class="row">
+          <div class="col-10 offset-1">
+               <div id="message">
+
+               </div>
+          </div>
+     </div>
+</div>
+<section class="home-section home-section-ratio pt-2">
+     <div class="container-fluid-lg">
+          <div class="row g-4">
+               <div class="col-xxl-3 col-lg-4 col-sm-6 ratio_180 d-sm-block d-none">
+                    <div class="home-contain rounded">
+                         <div class="h-100 bg-size blur-up lazyloaded"
+                              style="background-image: url(&quot;../assets/images/cake/banner/1.jpg&quot;); background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+                              <img src="{% static 'assets/images/vegetable/banner/11.jpg' %}" class="bg-img blur-up lazyload"
+                                   alt="" style="display: none;">
+                         </div>
+                         <div class="home-detail p-top-left home-p-medium">
+                              <div>
+                                   <h6 class="text-danger mb-2 fw-bold">Fresh &amp; Organic</h6>
+                                   <h2 class="theme-color fw-bold">Fresh </h2>
+                                   <h2 class="theme-color fw-bold">Vegetables</h2>
+                                  
+                                   <a href="category" class="shop-button">Shop Now <i
+                                             class="fa-solid fa-right-long ms-2"></i></a>
+                              </div>
+                         </div>
+                         </div>
+               </div>
+
+               <div class="col-xxl-6 col-lg-8 order-xxl-0 ratio_87">
+                    <div class="home-contain rounded">
+                         <div class="h-100 bg-size blur-up lazyloaded"
+                              style="background-image: url(&quot;../assets/images/cake/banner/2.jpg&quot;); background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+                              <img src="{%static 'assets/images/vegetable/banner/1.jpg' %}" class="bg-img blur-up lazyload"
+                                   alt="" style="display: none;">
+                         </div>
+                         <div class="home-detail p-center-left home-p-sm">
+                              <div>
+                                   <h6>Exclusive offer <span>30% Off</span></h6>
+                                   <h1 class="w-75 text-uppercase name-title poster-2 my-2">
+                                        We serve Fresh  
+                                        <span class="name">Vegestables</span> &
+                                        <span class="name-2">Fruits</span>
+                                   </h1>
+                                   <p class="w-50">Always Fresh Product well package</p>
+                                   <button onclick="location.href = 'category';"
+                                        class="btn text-white mt-xxl-4 mt-2 home-button mend-auto theme-bg-color">
+                                        Shop Now <i class="fa-solid fa-right-long icon ms-2"></i></button>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+
+               <div class="col-xxl-3 col-xl-4 col-sm-6 ratio_180 custom-ratio d-xxl-block d-lg-none d-sm-block d-none">
+                    <div class="home-contain rounded bg-size blur-up lazyloaded"
+                         style="background-image: url(&quot;../assets/images/cake/banner/3.jpg&quot;); background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+                         <img src="{% static 'assets/images/veg-3/banner/2.png' %}" class="bg-img blur-up lazyload"
+                              alt="" style="display: none;">
+                         <div class="home-detail p-top-left home-p-medium">
+                              <div>
+                                   <h6 class="text-danger mb-2 fw-bold">Fresh &amp; Organic</h6>
+                                   <h2 class="theme-color fw-bold">Fresh Fruits</h2>
+                                   <p class="text-content d-md-block d-none">We deliver organic vegetables & fruits
+                                   </p>
+                                   <a href="category" class="shop-button">Shop Now <i
+                                             class="fa-solid fa-right-long ms-2"></i></a>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+</section>
+<section class="category-section-3">
+     <div class="container-fluid-lg">
+          <div class="title">
+               <h2>Shop By Categories</h2>
+          </div>
+          <div class="row p-center">
+               {% for data in response %}
+               <div class="col-4 my-4">
+                    <div class="category-box-list text-center">
+                         <a href="products/{{data.id}}" class="category-name" tabindex="0">
+                              <h4>{{ data.name }}</h4>
+                         </a>
+                         <div class="category-box-view">
+                              <a href="products/{{data.id}}" tabindex="0">
+                                   <img src="/media/{{data.image}}" class=" w-100 img-fluid blur-up lazyloaded" alt=""
+                                        style="height: 200px !important; ">
+                              </a>
+                              <a href="products/{{data.id}}" class="btn shop-button" tabindex="0">
+                                   <span>Shop Now</span>
+                                   <i class="fas fa-angle-right"></i>
+                              </a>
+                         </div>
+                    </div>
+               </div>
+               {% endfor %}
+          </div>
+</section>
+<section>
+     <div class="container">
+          <div class="row">
+               <h2>
+                    Shop by Products
+               </h2>
+               {% for data in response_product %}
+               <div class="col-3 my-4">
+                    <div class="product-box product-box-bg wow fadeInUp"
+                         style="visibility: visible; animation-name: fadeInUp;">
+                         <div class="product-image">
+                              <a href="/project/single-product/{{data.id}}" tabindex="0">
+                                   <img src="/media/{{data.image}}"
+                                        style="width: 300px !important; height: 300px !important;"
+                                        class="img-fluid blur-up lazyloaded rounded" alt="">
+                              </a>
+                              <ul class="product-option">
+                                   <li data-bs-toggle="tooltip" data-bs-placement="top" title=""
+                                        data-bs-original-title="View">
+                                        <a href="/project/single-product/{{data.id}}">
+                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                  stroke-linecap="round" stroke-linejoin="round"
+                                                  class="feather feather-eye">
+                                                  <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                                  <circle cx="12" cy="12" r="3"></circle>
+                                             </svg>
+                                        </a>
+                                   </li>
+
+                                   <li data-bs-toggle="tooltip" data-bs-placement="top" title=""
+                                        data-bs-original-title="cart">
+                                        <a href="/project/add_to_cart/{{data.id}}" tabindex="0">
+                                             <i class="fa-solid fa-cart-shopping"></i>
+                                        </a>
+                                   </li>
+
+                                   <li data-bs-toggle="tooltip" data-bs-placement="top" title=""
+                                        data-bs-original-title="Wishlist">
+                                        <a href="wishlist/{{data.id}}" class="notifi-wishlist" tabindex="0">
+                                             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                                                  viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                                  stroke-linecap="round" stroke-linejoin="round"
+                                                  class="feather feather-heart">
+                                                  <path
+                                                       d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z">
+                                                  </path>
+                                             </svg>
+                                        </a>
+                                   </li>
+                              </ul>
+                         </div>
+                         <div class="product-detail">
+                              <a href="/project/single-product/{{data.id}}" tabindex="0">
+                                   <h6 class="name">
+                                        {{data.name}}
+                                   </h6>
+                              </a>
+
+                              <h5 class="sold text-content">
+                                   <span class="theme-color price">₹ {{data.price}}</span>
+                              </h5>
+                              <div class="add-to-cart-box bg-white">
+                                   <button class="btn btn-add-cart addcart-button" tabindex="0">Add
+                                        <span class="add-icon bg-light-orange">
+                                             <i class="fa-solid fa-plus"></i>
+                                        </span>
+                                   </button>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+               {% endfor %}
+          </div>
+     </div>
+</section>
+<section>
+     <div class="container-fluid-lg mb-5">
+          <div class="row">
+               <div class="col-12">
+                    <div class="home-contain hover-effect bg-size blur-up lazyloaded"
+                         style="background-image: url(&quot;../assets/images/cake/banner/11.jpg&quot;); background-size: cover; background-position: center center; background-repeat: no-repeat; display: block;">
+                         <img src="{%static 'assets/images/vegetable/banner/14.jpg' %}" class="bg-img blur-up lazyload"
+                              alt="" style="display: none;">
+                         <div class="home-detail p-center position-relative text-center">
+                              <div>
+                                   <h3 class="text-danger text-uppercase fw-bold mb-0">
+                                        limited Time Offer
+                                   </h3>
+                                   <h2 class="theme-color text-pacifico fw-normal mb-0 super-sale text-center">
+                                        Super
+                                   </h2>
+                                   <h2 class="home-name text-uppercase">sale</h2>
+                                   <h3 class="text-pacifico fw-normal text-content text-center">
+                                        www.jaydip.com
+                                   </h3>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+</section>
+<script>
+     $(document).ready(function () {
+          console.log("Jquery working ");
+          var data = "{{ message | escapejs }}";
+          console.log(data);
+          if (data !== '') {
+               if (data === '1') {
+                    $('#message').html(`<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <strong>Order PLaced Successfully </strong>.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>`);
+               }
+               else {
+
+                    $('#message').html(`<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <strong>Login Successfully  </strong>.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>`);
+               }
+               if (data == '11') {
+                    $('#message').html(`<div class="alert alert-success alert-dismissible fade show" role="alert">
+                                        <strong>Order Placed Successfully  </strong>.
+                                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                                        </div>`);
+                }
+    
+
+          }
+     })
+</script>
+{% endblock %}

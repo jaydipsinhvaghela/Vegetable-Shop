@@ -1,0 +1,351 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fastkart">
+    <meta name="keywords" content="Fastkart">
+    <meta name="author" content="Fastkart">
+    <link rel="icon" href="assets/images/favicon/2.png" type="image/x-icon">
+    <title>Online sale vegetable & fruits ecommerce</title>
+
+    <!-- Google font -->
+    <script src="https://code.jquery.com/jquery-3.7.1.js"
+        integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="preconnect" href="https://fonts.gstatic.com/">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Kaushan+Script&amp;display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600;700;800;900&amp;display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap">
+
+    <!-- bootstrap css -->
+    <link id="rtl-link" rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/bootstrap.css' %}">
+
+    <!-- wow css -->
+    <link rel="stylesheet" href="{% static 'assets/css/animate.min.css ' %}"/>
+
+    <!-- font-awesome css -->
+    <link rel="stylesheet" type="text/css" href="{% static ' assets/css/vendors/font-awesome.css' %}">
+
+    <!-- feather icon css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/feather-icon.css' %}">
+
+    <!-- slick css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/slick/slick.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/vendors/slick/slick-theme.css' %}">
+
+    <!-- Iconly css -->
+    <link rel="stylesheet" type="text/css" href="{% static 'assets/css/bulk-style.css' %}">
+
+    <!-- Template css -->
+    <link id="color-link" rel="stylesheet" type="text/css" href="{% static 'assets/css/style.css' %}">
+</head>
+
+<body class="theme-color-1">
+
+    <!-- Loader Start -->
+    <div class="fullpage-loader">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <!-- Loader End -->
+
+    <!-- Header Start -->
+    <header class=" pb-0">
+        <div class="top-nav top-header sticky-header">
+            <div class="container-fluid-lg">
+                <div class="row">
+                    <div class="col-5">
+                        <div class="navbar-top">
+                            <button class="navbar-toggler d-xl-none d-inline navbar-menu-button" type="button"
+                                data-bs-toggle="offcanvas" data-bs-target="#primaryMenu">
+                                <span class="navbar-toggler-icon">
+                                    <i class="fa-solid fa-bars"></i>
+                                </span>
+                            </button>
+                            <a href="/seller/s_login" class="web-logo nav-logo">
+                                <img src="{% static 'assets/images/logo/2.png' %}"
+                                    class="img-fluid blur-up lazyload mb-3 mt-2" alt="">
+                            </a>
+                            
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="header-nav">
+                            <div class="header-nav-middle">
+                                <div class="main-nav navbar navbar-expand-xl navbar-light navbar-sticky">
+                                    <div class="offcanvas offcanvas-collapse order-xl-2" id="primaryMenu">
+                                        <div class="offcanvas-header navbar-shadow">
+                                            <h5>Menu</h5>
+                                            <button class="btn-close lead" type="button" data-bs-dismiss="offcanvas"
+                                                aria-label="Close"></button>
+                                        </div>
+                                        <div class="offcanvas-body">
+                                            <ul class="navbar-nav">
+                                                <li class="pl">
+                                                    <a class=" btn btn-outline-primary" href="/project/"
+                                                        data-bs-toggle="">Home</a>
+                                                </li>
+
+                                                <li class=" ">
+                                                    <a class="btn btn-outline-primary" href="/project/category"
+                                                        data-bs-toggle="">Categories</a>
+                                                </li>
+
+
+                                                <li class=" ">
+                                                    <a class="btn btn-outline-primary" href="/project/aboutus"
+                                                        data-bs-toggle="">About</a>
+                                                </li>
+
+                                                <li class="">
+                                                    <a class="btn btn-outline-primary" href="/project/contact_us"
+                                                        data-bs-toggle="">Contact</a>
+                                                </li>
+                                                <li class="">
+                                                    <a class="btn btn-outline-primary" href="/project/feedback"
+                                                        data-bs-toggle="">Feedback</a>
+                                                </li>
+
+                                                {% if request.session.userid %}
+                                                <!-- If user is authenticated, show the logout link -->
+                                                <li class="">
+                                                    <a class="btn btn-outline-primary" href="{% url 'logout' %}" data-bs-toggle="">Logout</a>
+                                                </li>
+                                                
+                                                    <li>
+                                                        <a class="btn btn-outline-primary"
+                                                            href="/project/user_profile">
+                                                            <i data-feather="user"></i>
+                                                         
+                                                        </a>
+                                                    </li> 
+                                                    <li>
+                                                        <a class="btn btn-outline-primary"
+                                                            href="/project/cart">
+                                                            <i data-feather="shopping-cart"></i>
+                                                         
+                                                        </a>
+                                                    </li>
+                                                    <li>
+                                                        <a class="btn btn-outline-primary"
+                                                            href="/project/wishlist/0">
+                                                            <i data-feather="heart"></i>
+                                                         
+                                                        </a>
+                                                    </li>
+                                              
+                                            {% else %}
+                                                <!-- If user is not authenticated, show the login link -->
+                                                <li class="">
+                                                    <a class="btn btn-outline-primary" href="{% url 'login' %}" data-bs-toggle="">Login</a>
+                                                </li>
+                                                
+                                            {% endif %}
+
+                                            {% if not request.session.userid %}
+                                                <li class="  ">
+                                                    <a class="btn btn-outline-primary " href="register" data-bs-toggle="">Register</a>
+                                                </li>
+                                            {%endif%}
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="container-fluid-lg">
+            <div class="row">
+
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <!-- mobile fix menu start -->
+    <div class="mobile-menu d-md-none d-block mobile-cart">
+        <ul>
+            <li class="active">
+                <a href="index.html">
+                    <i class="iconly-Home icli"></i>
+                    <span>Home</span>
+                </a>
+            </li>
+
+            <li class="mobile-category">
+                <a href="javascript:void(0)">
+                    <i class="iconly-Category icli js-link"></i>
+                    <span>Category</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="search.html" class="search-box">
+                    <i class="iconly-Search icli"></i>
+                    <span>Search</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="wishlist.html" class="notifi-wishlist">
+                    <i class="iconly-Heart icli"></i>
+                    <span>My Wish</span>
+                </a>
+            </li>
+
+            <li>
+                <a href="cart.html">
+                    <i class="iconly-Bag-2 icli fly-cate"></i>
+                    <span>Cart</span>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <!-- mobile fix menu end -->
+    
+
+    <section>
+        {% block content %}
+
+        {% endblock %}
+    </section>
+
+    <!-- Footer Section Start -->
+    <footer class="section-t-space">
+        <div class="container-fluid-lg">
+            <div class="service-section">
+                <div class="row g-3">
+                    <div class="col-12">
+                        <div class="service-contain">
+                            <div class="service-box">
+                                <div class="service-image">
+                                    <img src="https://themes.pixelstrap.com/fastkart/assets/svg/product.svg"
+                                        class="blur-up lazyload" alt="">
+                                </div>
+
+                                <div class="service-detail">
+                                    <h5>Every Fresh Products</h5>
+                                </div>
+                            </div>
+
+                            <div class="service-box">
+                                <div class="service-image">
+                                    <img src="https://themes.pixelstrap.com/fastkart/assets/svg/delivery.svg"
+                                        class="blur-up lazyload" alt="">
+                                </div>
+
+                                <div class="service-detail">
+                                    <h5>Free Delivery For Order Over ₹50</h5>
+                                </div>
+                            </div>
+
+                            <div class="service-box">
+                                <div class="service-image">
+                                    <img src="https://themes.pixelstrap.com/fastkart/assets/svg/discount.svg"
+                                        class="blur-up lazyload" alt="">
+                                </div>
+
+                                <div class="service-detail">
+                                    <h5>Daily Mega Discounts</h5>
+                                </div>
+                            </div>
+
+                            <div class="service-box">
+                                <div class="service-image">
+                                    <img src="https://themes.pixelstrap.com/fastkart/assets/svg/market.svg"
+                                        class="blur-up lazyload" alt="">
+                                </div>
+
+                                <div class="service-detail">
+                                    <h5>Best Price On The Market</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sub-footer section-small-space">
+                <div class="reserve">
+                    <h6 class="text-content">©2024 Vaghela Jaydipsinh rights reserved</h6>
+                </div>
+
+                <div class="payment">
+                    <img src="{% static 'assets/images/payment/1.png'%}" class="blur-up lazyload" alt="">
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Bg overlay Start -->
+    <div class="bg-overlay"></div>
+    <!-- Bg overlay End -->
+
+    <!-- latest jquery-->
+    <script src="{% static 'assets/js/jquery-3.6.0.min.js'%}"></script>
+
+    <!-- jquery ui-->
+    <script src="{% static 'assets/js/jquery-ui.min.js'%}"></script>
+
+    <!-- sidebar open js -->
+    <script src="{% static 'assets/js/filter-sidebar.js'%}"></script>
+
+    <!-- Bootstrap js-->
+    <script src="{% static 'assets/js/bootstrap/bootstrap.bundle.min.js'%}"></script>
+    <script src="{% static 'assets/js/bootstrap/popper.min.js'%}"></script>
+
+    <!-- feather icon js-->
+    <script src="{% static 'assets/js/feather/feather.min.js'%}"></script>
+    <script src="{% static 'assets/js/feather/feather-icon.js'%}"></script>
+
+    <!-- Lazyload Js -->
+    <script src="{% static 'assets/js/lazysizes.min.js'%}"></script>
+
+    <!-- Slick js-->
+    <script src="{% static 'assets/js/slick/slick.js'%}"></script>
+    <script src="{% static 'assets/js/slick/custom_slick.js'%}"></script>
+    <script src="{% static 'assets/js/bootstrap/bootstrap-notify.min.js'%}"></script>
+
+    <!-- Auto Height Js -->
+    <script src="{% static 'assets/js/auto-height.js'%}"></script>
+
+    <!-- Timer Js -->
+    <script src="{% static 'assets/js/timer1.js'%}"></script>
+
+    <!-- Fly Cart Js -->
+    <script src="{% static 'assets/js/fly-cart.js'%}"></script>
+
+    <!-- Quantity js -->
+    <script src="{% static 'assets/js/quantity-2.js'%}"></script>
+
+    <!-- WOW js -->
+    <script src="{% static 'assets/js/wow.min.js'%}"></script>
+    <script src="{% static 'assets/js/custom-wow.js'%}"></script>
+
+    <!-- script js -->
+    <script src="{% static 'assets/js/script.js'%}"></script>
+
+    <!-- thme setting js -->
+    <script src="{% static 'assets/js/theme-setting.js'%}"></script>
+</body>
+
+</html>
